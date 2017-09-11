@@ -1,0 +1,50 @@
+{
+  "name": "bi-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "testtest",
+    "standard": "node_modules/.bin/standard --fix",
+    "dev": "cross-env NODE_ENV=default node_modules/.bin/nodemon index.js",
+    "start": "cross-env NODE_ENV=production  npm run pm2",
+    "pm2": "pm2 start pm2_config.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ab-inbev/APAC_Yedian_Tasks_Management.git"
+  },
+  "author": "Wenqing Yu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ab-inbev/APAC_Yedian_Tasks_Management/issues"
+  },
+  "homepage": "https://github.com/ab-inbev/APAC_Yedian_Tasks_Management#readme",
+  "dependencies": {
+    "config": "^1.26.2",
+    "cross-env": "^5.0.5",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.7",
+    "mysql2": "^1.4.2",
+    "node-cron": "^1.1.3",
+    "nodemon": "^1.11.0",
+    "pre-git": "^3.15.3",
+    "request": "^2.81.0",
+    "sequelize": "^4.1.0",
+    "standard": "^10.0.3"
+  },
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "pre-git": {
+      "pre-commit": [
+        "npm run standard"
+      ],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  }
+}
