@@ -41,12 +41,11 @@ webHandler.Post = (url, form, cookie) => {
   })
 }
 
-webHandler.Get = (url, query, cookie) => {
+webHandler.Get = (url, isHtml, query, cookie) => {
   return new Promise((resolve, reject) => {
     if (query) {
       url += `?query=${UrlEncode(query)}`
     }
-    console.log('内部服务请求get： ' + url)
     request.get({
       url
     },
@@ -59,7 +58,11 @@ webHandler.Get = (url, query, cookie) => {
         }
 
         if (!error && /^2\d+/.test(response.statusCode.toString())) {
-          resolve(JSON.parse(body))
+          if (isHtml) {
+            resolve(body)
+          } else {
+            resolve(JSON.parse(body))
+          }
         } else {
           reject(body)
         }
