@@ -58,10 +58,14 @@ webHandler.Get = (url, isHtml, query, cookie) => {
         }
 
         if (!error && /^2\d+/.test(response.statusCode.toString())) {
-          if (isHtml) {
-            resolve(body)
-          } else {
-            resolve(JSON.parse(body))
+          try {
+            if (isHtml) {
+              resolve(body)
+            } else {
+              resolve(JSON.parse(body))
+            }
+          } catch (err) {
+            reject(body)
           }
         } else {
           reject(body)
