@@ -148,9 +148,10 @@ class DefaultTask {
         let btcToeth = (await webHandler.Get(`https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-${bi.exName}`)).result[0].Last
         let ethPrice = await bi.priceMath()
         let btcPrice = parseInt((await webHandler.Get('https://api.viabtc.com/v1/market/ticker?market=BTCCNY')).data.ticker.last)
+
         result.push({
-          msg: `${bi.name}搬砖利润:` + ((((btcToeth * btcPrice) - ethPrice) / ethPrice) * 100).toFixed(2) + '%' + '      路径：' + bi.path,
-          price: ((((btcToeth * btcPrice) - ethPrice) / ethPrice) * 100).toFixed(2)
+          msg: `${bi.name}搬砖利润:` + ((((2000 / ethPrice) * 0.99 * btcToeth - 0.001) * btcPrice - 2000) / 2000 * 100).toFixed(2) + '%' + '      路径：' + bi.path,
+          price: ((((2000 / ethPrice) * 0.99 * btcToeth - 0.001) * btcPrice - 2000) / 2000 * 100).toFixed(2)
         })
       } catch (err) {
         console.log(err)

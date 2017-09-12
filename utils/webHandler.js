@@ -50,8 +50,9 @@ webHandler.Get = (url, isHtml, query, cookie) => {
       url
     },
       function (error, response, body) {
-        if (error) {
+        if (!response || error) {
           console.log(error)
+          reject(body)
         }
         if (!response.statusCode) {
           reject(body)
@@ -65,6 +66,7 @@ webHandler.Get = (url, isHtml, query, cookie) => {
               resolve(JSON.parse(body))
             }
           } catch (err) {
+            console.log('请求' + url + ' :失败')
             reject(body)
           }
         } else {
