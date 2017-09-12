@@ -36,6 +36,14 @@ class DefaultTask {
           return parseInt((await webHandler.Get('https://api.viabtc.com/v1/market/ticker?market=BCCCNY')).data.ticker.last)
         },
         path: '微比特 -> b网 -> 微比特'
+      },
+      {
+        name: 'bts',
+        priceMath: async () => {
+          console.log((await webHandler.Get('https://www.jubi.com/api/v1/ticker?coin=bts')).last)
+          return (await webHandler.Get('https://www.jubi.com/api/v1/ticker?coin=bts')).last
+        },
+        path: '聚币 -> b网 -> 微比特'
       }
     ]
 
