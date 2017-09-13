@@ -53,6 +53,7 @@ webHandler.Get = (url, isHtml, query, cookie) => {
         if (!response || error) {
           console.log(error)
           reject(body)
+          return
         }
         if (!response.statusCode) {
           reject(body)
